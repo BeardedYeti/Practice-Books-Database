@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var mongo = require('mongoskin');
 //Connecting to Database
-var db = mongo.db('mongodb://local:27017/books', {native_parser:true});
+var db = mongo.db('mongodb://localhost:27017/books', {native_parser:true});
 app.use(bodyParser.urlencoded({ extended: false }));
 //Uses JSON data
 app.use(bodyParser.json());
@@ -51,7 +51,7 @@ app.post('/book', function(req, res) {
     'Books': ""
   };
   if(!!Bookname && !!Authorname && !!Price) {
-    db.collection('books').insert({bookname:Bookname , authorname:Authorname, price:Price}, function(err, result) {
+    db.collection('books').insert({bookname: Bookname, authorname: Authorname, price: Price}, function(err, result) {
       if(!!err) {
         data['Books'] = 'Error adding data';
       } else {
