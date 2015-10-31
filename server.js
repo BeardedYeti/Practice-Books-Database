@@ -68,7 +68,7 @@ app.post('/book', function(req, res) {
 
 //Update List Items
 app.put('/book', function(req, res) {
-  var Id = req.body.id;
+  var Id = req.params.id;
   var Bookname = req.body.bookname;
   var Authorname = req.body.authorname;
   var Price = req.body.price;
@@ -77,7 +77,7 @@ app.put('/book', function(req, res) {
     'Books': ''
   };
   if(!!Bookname && !!Authorname && !!Price) {
-    db.collection('books').update({_id:mongo.helper.toObjectID(Id)}, {$set:{bookname:Bookname , authorname:Authorname, price:Price}}, function(err) {
+    db.collection('books').update({_id: mongo.helper.toObjectID(Id)}, {$set:{bookname:Bookname , authorname:Authorname, price:Price}}, function(err) {
       if(!!err) {
         data['Books'] = 'Error Updating';
         console.log('second');
