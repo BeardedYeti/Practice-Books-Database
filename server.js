@@ -77,7 +77,7 @@ app.put('/book', function(req, res) {
     'Books': ''
   };
   if(!!Bookname && !!Authorname && !!Price) {
-    db.collection('books').update({_id: mongo.helper.toObjectID(Id)}, {$set:{bookname:Bookname , authorname:Authorname, price:Price}}, function(err) {
+    db.collection('books').update({_id: mongo.helper.toObjectID(Id)}, {$set:{bookname: Bookname, authorname: Authorname, price: Price}}, function(err) {
       if(!!err) {
         data['Books'] = 'Error Updating';
         console.log('second');
@@ -95,13 +95,13 @@ app.put('/book', function(req, res) {
 
 //Deleting List Items
 app.delete('/book/:bookname', function(req, res){
-    var BookName = req.params.bookname;
+    var Bookname = req.params.bookname;
     var data = {
         'error': 1,
         'Books': ""
     };
-    if(!!BookName){
-        db.collection('books').remove({bookname:BookName}, function(err, result) {
+    if(!!Bookname){
+        db.collection('books').remove({bookname:Bookname}, function(err, result) {
             if(!!err){
                 data['Books'] = 'Error deleting data';
             }else{
